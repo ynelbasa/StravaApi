@@ -1,4 +1,4 @@
-# stravaapi
+# Strava API
 
 ## Project setup
 ```
