@@ -24,8 +24,18 @@
         <v-btn color="#fc4c02" text rounded>New Zealand</v-btn>
       </v-col>
       <v-col cols="6" class="text-right">
-        <v-text-field width="120px" class="d-inline-block"></v-text-field>
-        <v-btn class="mx-2 d-inline-block" fab dark small color="#fc4c02"
+        <v-text-field
+          width="120px"
+          class="d-inline-block"
+          v-model="searchText"
+        ></v-text-field>
+        <v-btn
+          class="mx-2 d-inline-block"
+          fab
+          dark
+          small
+          color="#fc4c02"
+          @click="search"
           ><i class="fas fa-search"></i> </v-btn
       ></v-col>
     </v-row>
@@ -63,8 +73,8 @@
       <div class="text-right">
         <v-pagination
           v-model="page"
-          :length="parseInt(races.length / pageSize)"
-          :total-visible="parseInt(races.length / pageSize)"
+          :length="totalPages"
+          :total-visible="totalPages"
           color="#fc4c02"
         ></v-pagination>
       </div>
@@ -82,17 +92,38 @@ export default {
       currentRaces: [],
       page: 1,
       pageSize: 8,
+      searchText: "",
     };
   },
-  methods: {},
+  methods: {
+    search: function() {
+      if (this.searchText !== "") {
+        var result = [];
+        this.races.forEach((race) => {
+          var isMatch = race.name
+            .toLocaleLowerCase()
+            .includes(this.searchText.toLocaleLowerCase());
+          if (isMatch) result.push(race);
+        });
+
+        this.page = 1;
+        this.currentRaces = result;
+      } else {
+        this.currentRaces = this.races;
+      }
+    },
+  },
   computed: {
     paginatedRaces: function() {
-      if (this.races.length <= this.pageSize) return this.races;
+      if (this.currentRaces.length <= this.pageSize) return this.currentRaces;
 
-      const start = this.page * this.pageSize,
+      const start = (this.page - 1) * this.pageSize,
         end = start + this.pageSize;
 
       return this.currentRaces.slice(start, end);
+    },
+    totalPages: function() {
+      return parseInt(this.currentRaces.length / this.pageSize) + 1;
     },
   },
   mounted() {
