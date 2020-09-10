@@ -29,10 +29,10 @@
           ><i class="fas fa-search"></i> </v-btn
       ></v-col>
     </v-row>
-    <v-row justify="center">
+    <v-row justify="start">
       <v-card
-        class="mx-auto race"
-        width="260"
+        class="race"
+        width="255"
         v-for="race in paginatedRaces"
         :key="race.id"
       >
