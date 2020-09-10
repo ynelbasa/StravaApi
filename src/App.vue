@@ -19,7 +19,7 @@
           transition="scale-transition"
           width="100"
         />
-        <span class="mr-2">Activities</span>
+        <span class="mr-2">Running Races</span>
       </div>
 
       <v-spacer></v-spacer>
