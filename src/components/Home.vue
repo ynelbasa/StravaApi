@@ -39,7 +39,7 @@
         <v-card-text>
           <h3 class="text--primary">{{ race.name }}</h3>
           <p>
-            {{ race.city }}, {{ race.state !== "" ? race.state + "," : "" }}
+            {{ race.city }}, {{ race.state ? race.state + "," : "" }}
             {{ race.country }}
           </p>
           <div class="text--primary">
@@ -79,6 +79,7 @@ export default {
     return {
       user: [],
       races: [],
+      currentRaces: [],
       page: 1,
       pageSize: 8,
     };
@@ -86,9 +87,12 @@ export default {
   methods: {},
   computed: {
     paginatedRaces: function() {
+      if (this.races.length <= this.pageSize) return this.races;
+
       const start = this.page * this.pageSize,
         end = start + this.pageSize;
-      return this.races.slice(start, end);
+
+      return this.currentRaces.slice(start, end);
     },
   },
   mounted() {
