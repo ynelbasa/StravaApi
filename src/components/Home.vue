@@ -16,12 +16,26 @@
       </v-col>
     </v-row>
     <div class="divider"></div>
-    <v-row class="text-center" align="center">
-      <v-col cols="1"><h4>Country</h4> </v-col>
+    <v-row align="center">
+      <v-col cols="1"><h4>Country</h4></v-col>
       <v-col cols="5" color="white">
-        <v-btn color="#fc4c02" rounded>United States</v-btn>
-        <v-btn color="#fc4c02" text rounded>France</v-btn>
-        <v-btn color="#fc4c02" text rounded>New Zealand</v-btn>
+        <v-btn
+          color="#fc4c02"
+          class="mx-2"
+          rounded
+          v-for="country in countries"
+          :key="country"
+          :text="selectedCountry !== country.toLocaleLowerCase()"
+          @click="filterByCountry(country)"
+          >{{ country }}</v-btn
+        >
+        <v-btn
+          color="#fc4c02"
+          rounded
+          :text="selectedCountry !== 'all'"
+          @click="filterByCountry('all')"
+          >All</v-btn
+        >
       </v-col>
       <v-col cols="6" class="text-right">
         <v-text-field
@@ -35,7 +49,7 @@
           dark
           small
           color="#fc4c02"
-          @click="search"
+          @click="searchByName"
           ><i class="fas fa-search"></i> </v-btn
       ></v-col>
     </v-row>
@@ -93,10 +107,12 @@ export default {
       page: 1,
       pageSize: 8,
       searchText: "",
+      countries: [],
+      selectedCountry: "all",
     };
   },
   methods: {
-    search: function() {
+    searchByName: function() {
       if (this.searchText !== "") {
         var result = [];
         this.races.forEach((race) => {
@@ -110,6 +126,24 @@ export default {
         this.currentRaces = result;
       } else {
         this.currentRaces = this.races;
+      }
+    },
+    filterByCountry: function(country) {
+      this.selectedCountry = country.toLocaleLowerCase();
+
+      if (this.selectedCountry === "all") {
+        this.currentRaces = this.races;
+      } else {
+        var result = [];
+        this.races.forEach((race) => {
+          var isMatch = race.country
+            .toLocaleLowerCase()
+            .includes(country.toLocaleLowerCase());
+          if (isMatch) result.push(race);
+        });
+
+        this.page = 1;
+        this.currentRaces = result;
       }
     },
   },
@@ -147,7 +181,7 @@ export default {
       })
       .then((response) => {
         this.races = response.data;
-      });
+    });
   },
 };
 </script>
