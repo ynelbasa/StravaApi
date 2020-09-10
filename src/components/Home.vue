@@ -9,9 +9,13 @@
           width="120"
         ></v-img>
         <h2 class="text-center">{{ user.firstname }} {{ user.lastname }}</h2>
-        <p class="text-center">{{ user.country }}</p>
+        <body class="text-center">
+          <i class="fas fa-map-marker-alt"></i>
+          {{ user.country }}
+        </body>
       </v-col>
     </v-row>
+    <div class="divider"></div>
     <v-row justify="center">
       <v-card
         class="mx-auto race"
@@ -26,11 +30,11 @@
             {{ race.country }}
           </p>
           <div class="text--primary">
+            <i class="far fa-calendar-alt"></i>
             {{ moment(race.start_date_local).format("YYYY-MM-DD HH:mm") }}
-            <br />
-
-            <span v-if="race.distance === 42195">Marathon Distance</span>
-            <span v-if="race.distance === 21097">Half-Marathon Distance</span>
+            <br /><i class="fas fa-map-pin"></i>
+            <span v-if="race.distance === 42195"> Marathon Distance</span>
+            <span v-if="race.distance === 21097"> Half-Marathon Distance</span>
             <span v-if="race.distance < 21097">
               {{ race.distance / 1000 - ((race.distance / 1000) % 1) }}km
               Distance</span
@@ -102,5 +106,11 @@ export default {
 <style lang="scss" scoped>
 .race {
   margin: 20px;
+}
+
+.divider {
+  background-color: #d3d3d3;
+  padding: 0.5px;
+  margin: 2px;
 }
 </style>
