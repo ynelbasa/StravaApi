@@ -16,6 +16,19 @@
       </v-col>
     </v-row>
     <div class="divider"></div>
+    <v-row class="text-center" align="center">
+      <v-col cols="1"><h4>Country</h4> </v-col>
+      <v-col cols="5" color="white">
+        <v-btn color="#fc4c02" rounded>United States</v-btn>
+        <v-btn color="#fc4c02" text rounded>France</v-btn>
+        <v-btn color="#fc4c02" text rounded>New Zealand</v-btn>
+      </v-col>
+      <v-col cols="6" class="text-right">
+        <v-text-field width="120px" class="d-inline-block"></v-text-field>
+        <v-btn class="mx-2 d-inline-block" fab dark small color="#fc4c02"
+          ><i class="fas fa-search"></i> </v-btn
+      ></v-col>
+    </v-row>
     <v-row justify="center">
       <v-card
         class="mx-auto race"
@@ -104,6 +117,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+button.v-btn--contained {
+  color: white !important;
+}
+
 .race {
   margin: 20px;
 }
