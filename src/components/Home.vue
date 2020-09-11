@@ -18,7 +18,7 @@
     <div class="divider"></div>
     <v-row align="center">
       <v-col cols="1"><h4>Country</h4></v-col>
-      <v-col cols="5" color="white">
+      <v-col cols="8" color="white">
         <v-btn
           color="#fc4c02"
           class="mx-2"
@@ -37,7 +37,7 @@
           >All</v-btn
         >
       </v-col>
-      <v-col cols="6" class="text-right">
+      <v-col cols="3" class="text-right">
         <v-text-field
           width="120px"
           class="d-inline-block"
@@ -115,7 +115,7 @@ export default {
     searchByName: function() {
       if (this.searchText !== "") {
         var result = [];
-        this.races.forEach((race) => {
+        this.currentRaces.forEach((race) => {
           var isMatch = race.name
             .toLocaleLowerCase()
             .includes(this.searchText.toLocaleLowerCase());
@@ -161,7 +161,7 @@ export default {
     },
   },
   mounted() {
-    var accessToken = "22ec1e0f3b31b5a404077f8907e01a30020d8f63";
+    var accessToken = "6fdb30269b9a953fdac04cf9b0b3c463fea61a31";
 
     // Get Athlete
     this.$http
@@ -181,7 +181,12 @@ export default {
       })
       .then((response) => {
         this.races = response.data;
-    });
+        this.currentRaces = this.races;
+        this.races.forEach((race) => {
+          if (!this.countries.includes(race.country))
+            this.countries.push(race.country);
+        });
+      });
   },
 };
 </script>
@@ -197,6 +202,6 @@ button.v-btn--contained {
 .divider {
   background-color: #d3d3d3;
   padding: 0.5px;
-  margin: 2px;
+  margin: 20px 10px 10px 10px;
 }
 </style>
