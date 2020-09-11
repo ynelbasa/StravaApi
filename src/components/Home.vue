@@ -83,7 +83,11 @@
         </v-card-actions>
       </v-card>
     </v-row>
-    <v-row justify="center">
+    <v-row justify="center" v-if="currentRaces.length === 0">
+      No events found that match your criteria.
+      <div class="text-right"></div>
+    </v-row>
+    <v-row justify="center" v-if="currentRaces.length > 0">
       <div class="text-right">
         <v-pagination
           v-model="page"
