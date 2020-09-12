@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: "Home",
+  name: "profile",
   data() {
     return {
       user: {},

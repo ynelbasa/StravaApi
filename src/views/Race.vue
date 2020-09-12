@@ -87,7 +87,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "race",
   data() {
     return {
       races: [],
