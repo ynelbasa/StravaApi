@@ -64,7 +64,7 @@
           </div>
         </v-card-text>
         <v-card-actions>
-          <v-btn text color="#fc4c02">Learn More</v-btn>
+          <v-btn text color="#fc4c02" :href="'/race/' + race.id">Learn More</v-btn>
         </v-card-actions>
       </v-card>
     </v-row>
