@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row class="mt-10">
-      <v-col>
+      <v-col cols="10">
         <h2>{{race.name}}</h2>
       </v-col>
-      <v-col color="white">
+      <v-col color="white" cols="2">
         <v-btn color="#fc4c02" rounded>Join Race</v-btn>
       </v-col>
     </v-row>
