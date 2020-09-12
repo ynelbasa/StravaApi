@@ -10,7 +10,6 @@
           transition="scale-transition"
           width="40"
         />
-
         <v-img
           alt="Strava Text"
           class="shrink mr-2"
@@ -19,7 +18,9 @@
           transition="scale-transition"
           width="100"
         />
-        <span class="mr-2 text-uppercase font-weight-medium">Running Races</span>
+        <v-btn text disabled>
+          <h4>Running Races</h4>
+        </v-btn>
       </div>
 
       <v-spacer></v-spacer>
