@@ -72,7 +72,7 @@
       No events found that match your criteria.
       <div class="text-right"></div>
     </v-row>
-    <v-row justify="center" v-if="currentRaces.length > 0">
+    <v-row justify="center" v-if="currentRaces.length > 0 && totalPages > 1">
       <div class="text-right">
         <v-pagination
           v-model="page"
@@ -139,13 +139,13 @@ export default {
     paginatedRaces: function () {
       if (this.currentRaces.length <= this.pageSize) return this.currentRaces;
 
-      const start = (this.page - 1) * this.pageSize,
+      const start = this.page * this.pageSize,
         end = start + this.pageSize;
 
       return this.currentRaces.slice(start, end);
     },
     totalPages: function () {
-      return parseInt(this.currentRaces.length / this.pageSize) + 1;
+      return parseInt(this.currentRaces.length / this.pageSize);
     },
   },
   mounted() {
