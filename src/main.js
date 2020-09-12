@@ -9,6 +9,7 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.moment = moment
 Vue.prototype.$accessCode = 'aa73dc83b4afd6e36f6d12a15a23137facf5a615'
+Vue.prototype.$googleApiKey = 'AIzaSyAYYWSEDiyx7lomBF9IX-lZdASo4C8G9S4'
 
 new Vue({
   vuetify,
